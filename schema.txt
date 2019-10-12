@@ -1,0 +1,115 @@
+ <!--Name: Jawahar-->
+<!--Roll no: 170004-->
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:key name="PKBook_ID">
+    <xs:selector xpath="Book/Book_ID"/>
+</xs:key>
+
+<xs:keyref name="FKBook_ID_1" refer="PKBook_ID">
+     <xs:selector xpath="Book_Author/Book_ID"/>
+</xs:keyref>
+
+<xs:keyref name="FKBook_ID_2" refer="PKBook_ID">
+     <xs:selector xpath="Book_Copies/Book_ID"/>
+</xs:keyref>
+
+<xs:keyref name="FKBook_ID_3" refer="PKBook_ID">
+     <xs:selector xpath="Book_Loans/Book_ID"/>
+</xs:keyref>
+
+<xs:key name="PKBranch_ID">
+    <xs:selector xpath="Book_Copies/Branch_ID"/>
+</xs:key>
+
+<xs:keyref name="FKBranch_ID_1" refer="PKBranch_ID">
+     <xs:selector xpath="Book_Loans/Branch_ID"/>
+</xs:keyref>
+
+<xs:keyref name="FKBranch_ID_2" refer="PKBranch_ID">
+     <xs:selector xpath="Library_Branch/Branch_ID"/>
+</xs:keyref>
+
+<xs:key name="PKCard_No">
+    <xs:selector xpath="Book_Loans/Card_No"/>
+</xs:key>
+
+<xs:keyref name="FKCard_No_1" refer="PKCard_No">
+     <xs:selector xpath="Borrower/Card_No"/>
+</xs:keyref>
+
+
+<xs:element name="Book">
+<xs:complexType>
+<xs:sequence>
+   <xs:attribute name="Book_ID" type="xs:integer"/>
+   <xs:attribute name="Title" type="xs:string"/>
+   <xs:attribute name="Publisher_name" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="Book_Author">
+<xs:complexType>
+<xs:sequence>
+   <xs:attribute name="Book_ID" type="xs:integer"/>
+   <xs:attribute name="Author_name" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="Publisher">
+<xs:complexType>
+<xs:sequence>
+   <xs:attribute name="Name" type="xs:string"/>
+   <xs:attribute name="Address" type="xs:string"/>
+   <xs:attribute name="Phone" type="xs:integer"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="Book_Copies">
+<xs:complexType>
+<xs:sequence>
+   <xs:attribute name="Book_ID" type="xs:integer"/>
+   <xs:attribute name="Branch_ID" type="xs:integer"/>
+   <xs:attribute name="No_of_Copies" type="xs:integer"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="Book_Loans">
+<xs:complexType>
+<xs:sequence>
+   <xs:attribute name="Book_ID" type="xs:integer"/>
+   <xs:attribute name="Branch_ID" type="xs:integer"/>
+   <xs:attribute name="Card_No" type="xs:integer"/>
+   <xs:attribute name="Date_out" type="xs:date"/>
+   <xs:attribute name="Due_date" type="xs:date"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="Library_Branch">
+<xs:complexType>
+<xs:sequence>
+   <xs:attribute name="Branch_ID" type="xs:integer"/>
+   <xs:attribute name="Branch_name" type="xs:string"/>
+   <xs:attribute name="Address" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="Borrower">
+<xs:complexType>
+<xs:sequence>
+   <xs:attribute name="Card_no" type="xs:integer"/>
+   <xs:attribute name="Name" type="xs:string"/>
+   <xs:attribute name="Address" type="xs:string"/>
+   <xs:attribute name="Phone" type="xs:integer"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+</xs:schema>
